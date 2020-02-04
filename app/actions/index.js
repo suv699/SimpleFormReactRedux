@@ -5,3 +5,17 @@ export const nextTime = time => {
         time
     }
 };
+
+export const CounterActionDecrement = function(count) {
+    return {
+        type: 'DECREMENT',
+        count: --count
+    }
+}
+
+export const CounterActionIncrement = function(count) {
+    return {
+        type: 'INCREMENT',
+        count: ++count
+    }
+}
