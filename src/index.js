@@ -1,13 +1,13 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { Provider } from 'react-redux'
+import LoginForm from './app/forms/LoginForm'
+// import { Provider } from 'react-redux'
+import './index.css';
 
-import Greeting from './components/Greeting';
-import store from './store/store'
+// import Greeting from './components/Greeting';
+// import store from './store/store'
 
 render(
-  <Provider store={store}>
-    <Greeting />
-  </Provider>,
+  <LoginForm />,
   document.getElementById('root')
 )
