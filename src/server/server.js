@@ -1,16 +1,13 @@
-import express from 'express';
-import bodyParser from 'body-parser';
+const express = require('express');
+const db = require('./db/index');
+const router = require('./routes/router');
 
-import db from './db/index';
-
+const PORT = process.env.PORT || '5000';
 const app = express();
-const PORT = process.env.PORT || 5000;
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
-db.on('error', console.error.bind(console, 'MongoDB connection Error!'));
+app.use('/api', router);
+db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
 app.listen(PORT, () => {
-    console.log(`Server running om port ${PORT}`);
+	console.log(`Server has been on port ${PORT}`);
 });
