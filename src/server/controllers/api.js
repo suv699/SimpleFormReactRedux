@@ -1,6 +1,5 @@
 const Model = require('../models/Model');
 
-
 getUsers = async (req, res) => {
 	await Model.find({}, (err, users) => {
 		if (err) {
