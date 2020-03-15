@@ -16,7 +16,18 @@ class LoginForm extends Component {
     toogleChange = (target) => {
         console.log(' -- > ' + target.name);
         this.setState({[target.name]: target.value})
-    }
+	}
+	
+	componentDidMount() {
+		let response = fetch('http://localhost:5000/api/users').then((response)=>{
+			console.log('---> fetch - ' + JSON.stringify(response));
+			// return response.json();
+			let res = response.json();
+			console.log(JSON.stringify(res))
+		});
+		
+		console.log(response.body)
+	}
     
 
     render() {
