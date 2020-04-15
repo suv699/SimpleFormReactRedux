@@ -1,15 +1,22 @@
-const  mongoose =  require('mongoose');
+const mongoose = require('mongoose');
+const config = require('config')
 
-const URL = 'mongodb://localhost:27017';
+const URL = config.get('mongoUri')//'mongodb://localhost:27017';
 
-mongoose.connect(URL, { useNewUrlParser: true, useUnifiedTopology: true } , (err) => {
-	if (err) {
-		console.error('Connection error', e.message);
+async function start() {
+	try {
+		console.log('DB connecting start...');
+		await mongoose.connect(URL, { useNewUrlParser: true, useUnifiedTopology: true } , (err) => {
+			console.log('Connect db OK!');
+		});
+	} catch (e) {
+		console.error.bind(console, 'MongoDB connection error:', e.message)
+		process.exit(1)
 	}
-
-	console.log('Connect db OK!');
-});
-
+}
+// start()
+module.exports = start
+/*
 const db = mongoose.connection
 
-module.exports = db
+module.exports = db*/
