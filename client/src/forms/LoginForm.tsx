@@ -1,6 +1,6 @@
 import React from 'react'
 import {NavLink} from "react-router-dom";
-// import {useHistory} from "react-router"
+import {useHttp} from "../hooks/http.hook";
 
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
@@ -34,8 +34,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LoginForm() {
   const classes = useStyles()
-  // const history = useHistory()
-  // history.push('/registration')
+  const {request, error, clearError} = useHttp()
+
+  const handleLogIn = async () => {
+    try {
+      // const data = await request('/api/auth', 'POST', {})
+      // auth.login(data.token, data.userId)
+    } catch (e) {
+
+    }
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -43,7 +51,7 @@ export default function LoginForm() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <div className={classes.form} >
           <TextField
             variant="outlined"
             margin="normal"
@@ -76,12 +84,13 @@ export default function LoginForm() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={handleLogIn}
           >
             Sign In
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              <Link href="/" variant="body2">
                 Forgot password?
               </Link>
             </Grid>
@@ -92,7 +101,7 @@ export default function LoginForm() {
               {/*<NavLink to="/registration">Ссылки</NavLink>*/}
             </Grid>
           </Grid>
-        </form>
+        </div>
       </div>
     </Container>
   );

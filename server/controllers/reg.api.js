@@ -5,7 +5,7 @@ const User = require('../models/User')
 const register = async (req, res) => {
   try {
     const {login, password, email} = req.body
-
+    debugger
     const checkUniqueUser = await User.findOne({login})
     if (checkUniqueUser) {
       return res.status(400).json({msg: 'Пользователь с таким логином уже существует'})

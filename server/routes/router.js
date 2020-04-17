@@ -1,5 +1,5 @@
 const express = require('express')
-const {getUsers, createUser, deleteUser, updateUser} = require('../controllers/api')
+// const {getUsers, createUser, deleteUser, updateUser} = require('../controllers/api')
 const auth = require('../controllers/auth.api')
 const register = require('../controllers/reg.api')
 

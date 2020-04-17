@@ -4,7 +4,6 @@ const auth = async (req, res) => {
   try {
     const {login, password} = req.body
     const user = await Model.findOne({login})
-
     if (!user) {
       return res.status(400).json({msg: 'Пользователь не найден'})
     }
