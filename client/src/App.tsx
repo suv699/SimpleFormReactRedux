@@ -1,12 +1,12 @@
-import React from 'react';
-import './App.css';
+import React from 'react'
+import LoginForm from "./forms/LoginForm";
 
 function App() {
   return (
     <div className="App">
-
+      <LoginForm />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
