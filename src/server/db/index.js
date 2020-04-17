@@ -14,9 +14,5 @@ async function start() {
 		process.exit(1)
 	}
 }
-// start()
-module.exports = start
-/*
-const db = mongoose.connection
 
-module.exports = db*/
+module.exports = start
