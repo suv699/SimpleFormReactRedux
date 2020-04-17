@@ -1,10 +1,14 @@
 import React from 'react'
-import LoginForm from "./forms/LoginForm";
+import {useRoutes} from "./components/Routes";
+import {BrowserRouter} from "react-router-dom";
 
 function App() {
+  const routes = useRoutes(false)
   return (
     <div className="App">
-      <LoginForm />
+      <BrowserRouter>
+        {routes}
+      </BrowserRouter>
     </div>
   )
 }

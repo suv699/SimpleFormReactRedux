@@ -1,9 +1,12 @@
 import React from 'react';
+import {NavLink} from "react-router-dom";
+
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -65,7 +68,6 @@ export default function RegistrationForm() {
             label="Email Address"
             name="email"
             autoComplete="email"
-            autoFocus
           />
           <Button
             type="submit"
@@ -76,6 +78,13 @@ export default function RegistrationForm() {
           >
             Registration
           </Button>
+          <Grid container>
+            <Grid item xs>
+              <NavLink to="/">
+                Sign In
+              </NavLink>
+            </Grid>
+          </Grid>
         </form>
       </div>
     </Container>

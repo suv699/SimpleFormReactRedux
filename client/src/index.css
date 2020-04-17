@@ -18,3 +18,11 @@ code {
   flex-direction: column;
   align-items: center;
 }
+
+a {
+  text-decoration: none;
+  color: #3f51b5;
+}
+a:hover {
+  text-decoration: underline;
+}
