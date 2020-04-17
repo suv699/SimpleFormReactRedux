@@ -1,3 +1,4 @@
+/*
 const Model = require('../models/Model');
 
 const getUsers = async (req, res) => {
@@ -51,4 +52,4 @@ module.exports = {
     createUser,
     deleteUser,
     updateUser
-}
+}*/
