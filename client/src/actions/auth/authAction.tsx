@@ -16,10 +16,16 @@ export const authAction = (data: any) => {
 
       dispatch({
         type: ActionTypes.SIGNIN,
-        isAuthenticated: true
+        isAuthenticated: !!res.userId
       })
     } catch (e) {
       console.log('request error - ', e.mess)
     }
+  }
+}
+
+export const Logout = () => {
+  return {
+    type: ActionTypes.LOGOUT
   }
 }

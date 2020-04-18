@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {connect} from "react-redux";
 import {NavLink} from "react-router-dom";
 import {registerAction} from "../actions/redistr/regAction";
-import {IUserData} from "../models/user-info";
+import {IUserRegistration} from "../models/user-info";
 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -34,14 +34,13 @@ const useStyles = makeStyles((theme) => ({
 const RegistrationForm = (props: any) => {
   const classes = useStyles();
 
-  let state: IUserData = {
+  let state: IUserRegistration = {
     login: '',
     password: '',
-    email: '',
-    isAuthenticated: false
+    email: ''
   }
 
-  const [stateData, setStateData] = useState<IUserData>(state);
+  const [stateData, setStateData] = useState<IUserRegistration>(state);
 
   const handlerRegistration = () => {
     props.regAction(stateData)
@@ -131,7 +130,7 @@ const RegistrationForm = (props: any) => {
 }*/
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    regAction: (data: IUserData) => {
+    regAction: (data: IUserRegistration) => {
       dispatch(registerAction(data))
     }
   }

@@ -9,6 +9,10 @@ export const authReducer = (state = initialState, action: any) => {
       return {
         ...state, isAuthenticated: action.isAuthenticated
       }
+    case ActionTypes.LOGOUT:
+      return {
+        ...state, isAuthenticated: false
+      }
     default:
       return state
   }

@@ -6,6 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import {connect} from "react-redux";
+import {Logout} from "../actions/auth/authAction";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -21,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function NavBar() {
+function NavBar(props: any) {
   const classes = useStyles();
 
   return (
@@ -34,9 +36,17 @@ export default function NavBar() {
           <Typography variant="h6" className={classes.title}>
             News
           </Typography>
-          <Button color="inherit">Logout</Button>
+          <Button color="inherit" onClick={()=>{props.logout()}}>Logout</Button>
         </Toolbar>
       </AppBar>
     </div>
   );
 }
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    logout: () => {
+      dispatch(Logout())
+    }
+  }
+}
+export default connect(null, mapDispatchToProps)(NavBar)

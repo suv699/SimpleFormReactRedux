@@ -1,6 +1,9 @@
 import React, {useState} from 'react'
 import {NavLink} from "react-router-dom";
 import {useHttp} from "../hooks/http.hook";
+import {IUserData} from "../models/user-info";
+import {connect} from "react-redux";
+import {authAction} from "../actions/auth/authAction";
 
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
@@ -11,10 +14,6 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
-import {IUserData} from "../models/user-info";
-import {connect} from "react-redux";
-import {registerAction} from "../actions/redistr/regAction";
-import {authAction} from "../actions/auth/authAction";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -42,9 +41,7 @@ function LoginForm(props: any) {
 
   let state: IUserData = {
     login: '',
-    password: '',
-    email: '',
-    isAuthenticated: false
+    password: ''
   }
   const [stateData, setStateData] = useState<IUserData>(state);
 
@@ -133,7 +130,7 @@ function LoginForm(props: any) {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    logIn: (data: any) => {
+    logIn: (data: IUserData) => {
       dispatch(authAction(data))
     }
   }

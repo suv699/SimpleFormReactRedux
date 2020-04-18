@@ -1,13 +1,10 @@
-import {IUserData} from "../../models/user-info";
+import {IUserRegistration} from "../../models/user-info";
 import {ActionTypes} from '../../types'
 
-const initialState: IUserData = {
+const initialState: IUserRegistration = {
   login: '',
   password: '',
-  email: '',
-  isAuthenticated: false,
-  isError: false,
-  isErrorText: ''
+  email: ''
 }
 
 export const registrReducer = (state = initialState, action: any) => {
