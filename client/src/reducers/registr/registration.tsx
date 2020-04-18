@@ -1,13 +1,15 @@
-import { REGISTR } from "../../types"
+import {IUserData} from "../../models/user-info";
+import {ActionTypes} from '../../types'
 
-const initialState = {
-  isAuthenticated: false
+const initialState: IUserData = {
+  login: '',
+  password: '',
+  email: ''
 }
 
 export const registrReducer = (state = initialState, action: any) => {
-  console.log('---=== registrReducer ===---')
   switch (action.type) {
-    case REGISTR:
+    case ActionTypes.REGISTR:
       return {
         ...state, ...action
       }

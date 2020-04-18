@@ -1,17 +1,14 @@
-import {REGISTR} from "../../types";
 
 export const registerAction = (data: any) => {
   return async (dispatch: any) => {
+    const headers = {
+      'Content-Type': 'application/json'
+    }
     const response = await fetch('/api/registration',{
       method: 'POST',
-      body: data
+      body: JSON.stringify(data),
+      headers
     })
     const res = await response.json()
   }
-
-  /*return {
-    type: REGISTR,
-    isAuthenticated: true,
-    userData: data
-  }*/
 }

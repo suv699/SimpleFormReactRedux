@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {connect} from "react-redux";
 import {NavLink} from "react-router-dom";
 import {registerAction} from "../actions/redistr/regAction";
+import {IUserData} from "../models/user-info";
 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -32,18 +33,28 @@ const useStyles = makeStyles((theme) => ({
 
 const RegistrationForm = (props: any) => {
   const classes = useStyles();
-  let userData = {
+
+  let state: IUserData = {
     login: '',
-    password: ''
+    password: '',
+    email: ''
   }
+
+  const [stateData, setStateData] = useState<IUserData>(state);
 
   const handlerRegistration = () => {
-    props.regAction(userData)
+    console.log('---', stateData)
+    props.regAction(stateData)
   }
 
-  const onChangeHandler = (event: any) => {
-    const {name, value} = event.target
-    userData = {login: name, password: value}
+  const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.persist()
+    setStateData(prevState => (
+      {
+        ...prevState,
+        ...{[event.target.name]: event.target.value}
+      }
+    ))
   }
   return (
     <Container component="main" maxWidth="xs">
@@ -60,7 +71,7 @@ const RegistrationForm = (props: any) => {
             id="login"
             label="Login"
             name="login"
-            value={props.login}
+            value={stateData.login}
             autoComplete="login"
             onChange={onChangeHandler}
             autoFocus
@@ -74,7 +85,8 @@ const RegistrationForm = (props: any) => {
             label="Password"
             type="password"
             id="password"
-            value={props.password}
+            value={stateData.password}
+            onChange={onChangeHandler}
             autoComplete="current-password"
           />
           <TextField
@@ -84,7 +96,8 @@ const RegistrationForm = (props: any) => {
             id="email"
             label="Email Address"
             name="email"
-            value={props.email}
+            value={stateData.email}
+            onChange={onChangeHandler}
             autoComplete="email"
           />
           <Button
@@ -111,11 +124,13 @@ const RegistrationForm = (props: any) => {
 }
 
 /*const mapStateToProps = (state: any) => {
-
+  return {
+    formData: state.registr
+  }
 }*/
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    regAction: (data: any) => {
+    regAction: (data: IUserData) => {
       dispatch(registerAction(data))
     }
   }

@@ -23,12 +23,8 @@ export const useRoutes = (isAuthenticated: boolean) => {
 
   return (
     <Switch>
-      <Route path="/" exact>
-        <LoginForm />
-      </Route>
-      <Route path="/registration">
-        <RegistrationForm />
-      </Route>
+      <Route path="/" exact component={LoginForm}></Route>
+      <Route path="/registration" component={RegistrationForm}></Route>
       <Redirect to="/" />
     </Switch>
   )

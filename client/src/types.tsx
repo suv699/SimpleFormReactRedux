@@ -1,3 +1,5 @@
-export const SIGNIN = 'APP/SIGNIN'
-export const SIGNOUT = 'APP/SIGNOUT'
-export const REGISTR = 'APP/REGISTR'
+export enum ActionTypes {
+  SIGNIN = 'APP/SIGNIN',
+  SIGNOUT = 'APP/SIGNOUT',
+  REGISTR = 'APP/REGISTR'
+}
