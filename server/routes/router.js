@@ -12,7 +12,8 @@ router.delete('/user/:id', deleteUser)
 router.put('/user/:id', updateUser)
 */
 
-router.post('/auth', register)
-router.post('/registration', auth)
+router.get('/auth', auth)
+router.post('/registration', register)
+
 
 module.exports = router

@@ -10,8 +10,11 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use('/api', router)
 
-app.listen(PORT, () => {
-	console.log(`Server has been on port ${PORT}`)
-});
+const startServer = async () => {
+	await start()
+	app.listen(PORT, () => {
+		console.log(`Server has been on port ${PORT}`)
+	});
+}
 
-start()
+startServer()
