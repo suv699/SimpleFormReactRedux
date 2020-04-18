@@ -2,21 +2,18 @@ import React from 'react'
 import {Switch, Route, Redirect} from 'react-router-dom'
 import LoginForm from "../forms/LoginForm"
 import RegistrationForm from "../forms/RegistrationForm"
+import Welcome from "../forms/welcome";
+import Contacts from "../forms/Contacts";
+import About from "../forms/About";
 
 export const useRoutes = (isAuthenticated: boolean) => {
   if (isAuthenticated) {
     return (
       <Switch>
-        <Route path="/links" exact>
-          {/*<LinksPage />*/}
-        </Route>
-        <Route path="/create" exact>
-          {/*<CreatePage />*/}
-        </Route>
-        <Route path="/detail/:id">
-          {/*<DetailPage />*/}
-        </Route>
-        <Redirect to="/create" />
+        <Route path="/welcome" exact component={Welcome}></Route>
+        <Route path="/contacts" component={Contacts}></Route>
+        <Route path="/about" component={About}></Route>
+        <Redirect to="/welcome" />
       </Switch>
     )
   }

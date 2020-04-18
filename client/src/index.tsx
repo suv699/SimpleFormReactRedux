@@ -9,8 +9,11 @@ import './index.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 
+// @ts-ignore
 const store = createStore(rootReducer, compose(
-  applyMiddleware(thunk)
+  applyMiddleware(thunk),
+  (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
+  (window as any).__REDUX_DEVTOOLS_EXTENSION__()
 ))
 const app = (
   <Provider store={store}>

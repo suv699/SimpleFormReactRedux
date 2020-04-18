@@ -1,13 +1,17 @@
 import React from 'react'
 import {useRoutes} from "./components/Routes";
 import {BrowserRouter} from "react-router-dom";
+import {useSelector} from "react-redux";
+import NavBar from "./components/NavBar";
 
 function App() {
-  const isAuthenticated: boolean = false
+  // @ts-ignore
+  const isAuthenticated: boolean = useSelector(state => state.auth.isAuthenticated)
   const routes = useRoutes(isAuthenticated)
   return (
     <div className="App">
       <BrowserRouter>
+        { isAuthenticated && <NavBar /> }
         {routes}
       </BrowserRouter>
     </div>

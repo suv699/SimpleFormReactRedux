@@ -1,3 +1,4 @@
+import {ActionTypes} from "../../types";
 
 export const registerAction = (data: any) => {
   return async (dispatch: any) => {
@@ -10,5 +11,13 @@ export const registerAction = (data: any) => {
       headers
     })
     const res = await response.json()
+
+    return {
+      type: ActionTypes.REGISTR,
+      data: {
+        isError: false,
+        isErrorText: res.msg
+      }
+    }
   }
 }

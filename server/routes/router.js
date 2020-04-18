@@ -12,7 +12,7 @@ router.delete('/user/:id', deleteUser)
 router.put('/user/:id', updateUser)
 */
 
-router.get('/auth', auth)
+router.post('/auth', auth)
 router.post('/registration', register)
 
 

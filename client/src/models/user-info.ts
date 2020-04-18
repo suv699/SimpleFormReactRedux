@@ -1,5 +1,8 @@
 export interface IUserData {
   login: String,
   password: String,
-  email?: String
+  isAuthenticated: boolean,
+  email?: String,
+  isError?: boolean,
+  isErrorText?: String
 }

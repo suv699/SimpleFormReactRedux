@@ -4,7 +4,10 @@ import {ActionTypes} from '../../types'
 const initialState: IUserData = {
   login: '',
   password: '',
-  email: ''
+  email: '',
+  isAuthenticated: false,
+  isError: false,
+  isErrorText: ''
 }
 
 export const registrReducer = (state = initialState, action: any) => {

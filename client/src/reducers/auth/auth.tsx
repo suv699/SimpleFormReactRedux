@@ -7,7 +7,7 @@ export const authReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case ActionTypes.SIGNIN:
       return {
-        ...state, ...action
+        ...state, isAuthenticated: action.isAuthenticated
       }
     default:
       return state

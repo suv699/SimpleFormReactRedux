@@ -37,14 +37,15 @@ const RegistrationForm = (props: any) => {
   let state: IUserData = {
     login: '',
     password: '',
-    email: ''
+    email: '',
+    isAuthenticated: false
   }
 
   const [stateData, setStateData] = useState<IUserData>(state);
 
   const handlerRegistration = () => {
-    console.log('---', stateData)
     props.regAction(stateData)
+    setStateData(state)
   }
 
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {

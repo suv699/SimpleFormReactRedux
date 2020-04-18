@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {NavLink} from "react-router-dom";
 import {useHttp} from "../hooks/http.hook";
 
@@ -11,6 +11,10 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
+import {IUserData} from "../models/user-info";
+import {connect} from "react-redux";
+import {registerAction} from "../actions/redistr/regAction";
+import {authAction} from "../actions/auth/authAction";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -32,14 +36,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function LoginForm() {
+function LoginForm(props: any) {
   const classes = useStyles()
   const {request, error, clearError} = useHttp()
 
+  let state: IUserData = {
+    login: '',
+    password: '',
+    email: '',
+    isAuthenticated: false
+  }
+  const [stateData, setStateData] = useState<IUserData>(state);
+
+  const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.persist()
+    setStateData(prevState => (
+      {
+        ...prevState,
+        ...{[event.target.name]: event.target.value}
+      }
+    ))
+  }
+
   const handleLogIn = async () => {
     try {
-      // const data = await request('/api/auth', 'POST', {})
-      // auth.login(data.token, data.userId)
+      props.logIn(stateData)
     } catch (e) {
 
     }
@@ -60,6 +81,8 @@ export default function LoginForm() {
             id="login"
             label="Login"
             name="login"
+            value={stateData.login}
+            onChange={onChangeHandler}
             autoComplete="login"
             autoFocus
           />
@@ -69,6 +92,8 @@ export default function LoginForm() {
             required
             fullWidth
             name="password"
+            value={stateData.password}
+            onChange={onChangeHandler}
             label="Password"
             type="password"
             id="password"
@@ -98,7 +123,6 @@ export default function LoginForm() {
               <NavLink to="/registration">
                 Registration
               </NavLink>
-              {/*<NavLink to="/registration">Ссылки</NavLink>*/}
             </Grid>
           </Grid>
         </div>
@@ -106,3 +130,13 @@ export default function LoginForm() {
     </Container>
   );
 }
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    logIn: (data: any) => {
+      dispatch(authAction(data))
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(LoginForm)
