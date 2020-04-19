@@ -14,6 +14,7 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
+import {emptyField} from "../actions/app";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -42,9 +43,13 @@ function LoginForm(props: any) {
   }
   const handleLogIn = async () => {
     try {
+      if(props.authData && (!props.authData.login || !props.authData.password)) {
+        props.emptyField()
+        return false
+      }
       props.logIn(props.authData)
     } catch (e) {
-
+      console.log('Ошибка авторизации')
     }
   }
   return (
@@ -136,6 +141,9 @@ const mapDispatchToProps = (dispatch: any) => {
     },
     onChangeFielAuth: (name: String, value: String) => {
       dispatch(onChangeFieldAuth(name, value))
+    },
+    emptyField: () => {
+      dispatch(emptyField())
     }
   }
 }

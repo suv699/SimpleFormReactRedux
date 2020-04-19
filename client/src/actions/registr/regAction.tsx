@@ -20,9 +20,9 @@ export const registerAction = (data: any) => {
       }
       !res.userId && dispatch(ShowMsg(msgData)) && setTimeout(() => {dispatch(HideMsg())}, 3000)
       dispatch(EnabledField())
-      return {
+      dispatch({
         type: ActionTypes.REGISTR
-      }
+      })
     } catch (e) {
       dispatch(EnabledField())
       console.log('Error auth')

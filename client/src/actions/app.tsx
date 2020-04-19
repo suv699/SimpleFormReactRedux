@@ -27,3 +27,9 @@ export const EnabledField = () => {
     type: ActionTypes.ENABLEDFIELD
   }
 }
+
+export const emptyField = () => {
+  return async (dispatch: any) => {
+    dispatch(ShowMsg({text: 'Заполните логин пароль!', mode: 'error'})) && setTimeout(() => {dispatch(HideMsg())}, 3000)
+  }
+}

@@ -11,7 +11,7 @@ export const registrReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case ActionTypes.REGISTR:
       return {
-        ...state, ...action
+        ...state, ...action, login: '', password: '', email: ''
       }
     case ActionTypes.ONCHAGEREGFIELD:
       return {

@@ -13,7 +13,7 @@ export const authReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case ActionTypes.SIGNIN:
       return {
-        ...state, isAuthenticated: action.isAuthenticated
+        ...state, isAuthenticated: action.isAuthenticated, login: '', password: ''
       }
     case ActionTypes.LOGOUT:
       return {

@@ -11,6 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from "@material-ui/core/Grid";
 import {Message} from "../components/Alert";
+import {emptyField} from "../actions/app";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -36,6 +37,12 @@ const RegistrationForm = (props: any) => {
   const classes = useStyles();
 
   const handlerRegistration = () => {
+
+    if(props.regData && (!props.regData.login || !props.regData.password)) {
+      props.emptyField()
+      return false
+    }
+
     props.regAction(props.regData)
   }
 
@@ -136,6 +143,9 @@ const mapDispatchToProps = (dispatch: any) => {
     },
     onChangeFieldReg: (name: String, value: String) => {
       dispatch(onChangeFieldReg(name, value))
+    },
+    emptyField: () => {
+      dispatch(emptyField())
     }
   }
 }
