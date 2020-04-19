@@ -2,7 +2,7 @@ import React from 'react'
 import {Switch, Route, Redirect} from 'react-router-dom'
 import LoginForm from "../forms/LoginForm"
 import RegistrationForm from "../forms/RegistrationForm"
-import Welcome from "../forms/welcome";
+import Welcome from "../forms/Welcome";
 import Contacts from "../forms/Contacts";
 import About from "../forms/About";
 

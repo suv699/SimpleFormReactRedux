@@ -38,7 +38,6 @@ const useStyles = makeStyles((theme) => ({
 
 function LoginForm(props: any) {
   const classes = useStyles()
-  const {request, error, clearError} = useHttp()
 
   let state: IUserData = {
     login: '',
@@ -84,6 +83,7 @@ function LoginForm(props: any) {
               value={stateData.login}
               onChange={onChangeHandler}
               autoComplete="login"
+              disabled={props.disabled}
               autoFocus
             />
             <TextField
@@ -96,12 +96,14 @@ function LoginForm(props: any) {
               onChange={onChangeHandler}
               label="Password"
               type="password"
+              disabled={props.disabled}
               id="password"
               autoComplete="current-password"
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
+              disabled={props.disabled}
             />
             <Button
               type="submit"
@@ -110,6 +112,7 @@ function LoginForm(props: any) {
               color="primary"
               className={classes.submit}
               onClick={handleLogIn}
+              disabled={props.disabled}
             >
               Sign In
             </Button>
@@ -134,9 +137,10 @@ function LoginForm(props: any) {
 
 const mapStateToProps = (state: any) => {
   return {
-    isMsg: state.msg.isMsg,
-    text: state.msg.text,
-    mode: state.msg.mode
+    isMsg: state.appData.isMsg,
+    text: state.appData.text,
+    mode: state.appData.mode,
+    disabled: state.appData.disabled
   }
 }
 

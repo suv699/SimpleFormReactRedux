@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {connect} from "react-redux";
 import {NavLink} from "react-router-dom";
-import {registerAction} from "../actions/redistr/regAction";
+import {registerAction} from "../actions/registr/regAction";
 import {IUserRegistration} from "../models/user-info";
 
 import Button from '@material-ui/core/Button';
@@ -77,6 +77,7 @@ const RegistrationForm = (props: any) => {
               value={stateData.login}
               autoComplete="login"
               onChange={onChangeHandler}
+              disabled={props.disabled}
               autoFocus
             />
             <TextField
@@ -90,6 +91,7 @@ const RegistrationForm = (props: any) => {
               id="password"
               value={stateData.password}
               onChange={onChangeHandler}
+              disabled={props.disabled}
               autoComplete="current-password"
             />
             <TextField
@@ -101,6 +103,7 @@ const RegistrationForm = (props: any) => {
               name="email"
               value={stateData.email}
               onChange={onChangeHandler}
+              disabled={props.disabled}
               autoComplete="email"
             />
             <Button
@@ -110,6 +113,7 @@ const RegistrationForm = (props: any) => {
               color="primary"
               className={classes.submit}
               onClick={handlerRegistration}
+              disabled={props.disabled}
             >
               Registration
             </Button>
@@ -129,9 +133,10 @@ const RegistrationForm = (props: any) => {
 
 const mapStateToProps = (state: any) => {
   return {
-    isMsg: state.msg.isMsg,
-    text: state.msg.text,
-    mode: state.msg.mode
+    isMsg: state.appData.isMsg,
+    text: state.appData.text,
+    mode: state.appData.mode,
+    disabled: state.appData.disabled
   }
 }
 const mapDispatchToProps = (dispatch: any) => {

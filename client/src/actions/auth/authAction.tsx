@@ -1,9 +1,10 @@
 import {ActionTypes} from "../../types";
-import {HideMsg, ShowMsg} from "../app";
+import {DisabledField, EnabledField, HideMsg, ShowMsg} from "../app";
 
 export const authAction = (data: any) => {
   return async (dispatch: any) => {
     try {
+      dispatch(DisabledField())
       const headers = {
         'Content-Type': 'application/json'
       }
@@ -17,11 +18,13 @@ export const authAction = (data: any) => {
       dispatch(LogiIn(res.userId))
       const msgData = {
         text: res.msg,
-        mode: response.status !== 400 ? 'error' : 'success'
+        mode: response.status !== 200 ? 'error' : 'success'
       }
       !res.userId && dispatch(ShowMsg(msgData)) && setTimeout(() => {dispatch(HideMsg())}, 3000)
+      dispatch(EnabledField())
 
     } catch (e) {
+      dispatch(EnabledField())
       console.log('request error - ', e.message)
     }
   }

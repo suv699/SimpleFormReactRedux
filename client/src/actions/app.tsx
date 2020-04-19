@@ -15,3 +15,15 @@ export const HideMsg = () => {
     mode: ''
   }
 }
+
+export const DisabledField = () => {
+  return {
+    type: ActionTypes.DISABLEDFIELD
+  }
+}
+
+export const EnabledField = () => {
+  return {
+    type: ActionTypes.ENABLEDFIELD
+  }
+}

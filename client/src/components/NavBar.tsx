@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import {connect} from "react-redux";
 import {Logout} from "../actions/auth/authAction";
+import {useHistory} from "react-router";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -24,18 +25,18 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 function NavBar(props: any) {
-  const classes = useStyles();
+  const classes = useStyles()
+  const history = useHistory()
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
           <Typography variant="h6" className={classes.title}>
-            News
+            React App
           </Typography>
+          <Button color="inherit" onClick={() => {history.push('/')}}>Welcome</Button>
+          <Button color="inherit" onClick={() => {history.push('/about')}}>About</Button>
           <Button color="inherit" onClick={()=>{props.logout()}}>Logout</Button>
         </Toolbar>
       </AppBar>
