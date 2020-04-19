@@ -27,6 +27,13 @@ export const registerAction = (data: any) => {
       dispatch(EnabledField())
       console.log('Error auth')
     }
+  }
+}
 
+export const onChangeFieldReg = (name: String, value: String) => {
+  return {
+    type: ActionTypes.ONCHAGEREGFIELD,
+    field: name,
+    value
   }
 }

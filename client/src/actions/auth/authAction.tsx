@@ -47,3 +47,11 @@ export const Logout = () => {
     type: ActionTypes.LOGOUT
   }
 }
+
+export const onChangeFieldAuth = (name: String, value: String) => {
+  return {
+    type: ActionTypes.ONCHAGEAUTHFIELD,
+    field: name,
+    value
+  }
+}
