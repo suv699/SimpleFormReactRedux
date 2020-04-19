@@ -26,3 +26,7 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+.table-container {
+  padding: 10px 30px;
+}
