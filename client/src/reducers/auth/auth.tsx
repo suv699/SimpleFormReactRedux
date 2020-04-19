@@ -5,7 +5,9 @@ const checkLocalStorage = () => {
   return d && !!d.userId
 }
 const initialState = {
-  isAuthenticated: checkLocalStorage()
+  isAuthenticated: checkLocalStorage(),
+  login: '',
+  password: ''
 }
 export const authReducer = (state = initialState, action: any) => {
   switch (action.type) {
@@ -16,7 +18,12 @@ export const authReducer = (state = initialState, action: any) => {
     case ActionTypes.LOGOUT:
       return {
         ...state, isAuthenticated: false
-      }
+			}
+		case ActionTypes.ONCHAGEAUTHFIELD:
+			return {
+				...state,
+				[action.field]: action.value
+			}
     default:
       return state
   }

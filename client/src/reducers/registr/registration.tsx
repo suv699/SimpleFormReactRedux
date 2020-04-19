@@ -13,6 +13,11 @@ export const registrReducer = (state = initialState, action: any) => {
       return {
         ...state, ...action
       }
+    case ActionTypes.ONCHAGEREGFIELD:
+      return {
+        ...state,
+        [action.field]: action.value
+      }
     default:
       return state
   }

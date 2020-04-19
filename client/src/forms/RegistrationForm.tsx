@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {connect} from "react-redux";
 import {NavLink} from "react-router-dom";
-import {registerAction} from "../actions/registr/regAction";
+import {onChangeFieldReg, registerAction} from "../actions/registr/regAction";
 import {IUserRegistration} from "../models/user-info";
 
 import Button from '@material-ui/core/Button';
@@ -35,27 +35,13 @@ const useStyles = makeStyles((theme) => ({
 const RegistrationForm = (props: any) => {
   const classes = useStyles();
 
-  let state: IUserRegistration = {
-    login: '',
-    password: '',
-    email: ''
-  }
-
-  const [stateData, setStateData] = useState<IUserRegistration>(state);
-
   const handlerRegistration = () => {
-    props.regAction(stateData)
-    setStateData(state)
+    props.regAction(props.regData)
   }
 
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.persist()
-    setStateData(prevState => (
-      {
-        ...prevState,
-        ...{[event.target.name]: event.target.value}
-      }
-    ))
+    props.onChangeFieldReg(event.target.name, event.target.value)
   }
   return (
     <div>
@@ -74,10 +60,10 @@ const RegistrationForm = (props: any) => {
               id="login"
               label="Login"
               name="login"
-              value={stateData.login}
+              value={props.login}
               autoComplete="login"
               onChange={onChangeHandler}
-              disabled={props.disabled}
+              disabled={props.regData.disabled}
               autoFocus
             />
             <TextField
@@ -89,7 +75,7 @@ const RegistrationForm = (props: any) => {
               label="Password"
               type="password"
               id="password"
-              value={stateData.password}
+              value={props.regData.password}
               onChange={onChangeHandler}
               disabled={props.disabled}
               autoComplete="current-password"
@@ -101,7 +87,7 @@ const RegistrationForm = (props: any) => {
               id="email"
               label="Email Address"
               name="email"
-              value={stateData.email}
+              value={props.regData.email}
               onChange={onChangeHandler}
               disabled={props.disabled}
               autoComplete="email"
@@ -136,13 +122,20 @@ const mapStateToProps = (state: any) => {
     isMsg: state.appData.isMsg,
     text: state.appData.text,
     mode: state.appData.mode,
-    disabled: state.appData.disabled
+		disabled: state.appData.disabled,
+		regData: state.registr,
+    login: state.registr.login,
+    password: state.registr.password,
+    email: state.registr.email,
   }
 }
 const mapDispatchToProps = (dispatch: any) => {
   return {
     regAction: (data: IUserRegistration) => {
       dispatch(registerAction(data))
+    },
+    onChangeFieldReg: (name: String, value: String) => {
+      dispatch(onChangeFieldReg(name, value))
     }
   }
 }

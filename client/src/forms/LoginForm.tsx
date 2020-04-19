@@ -1,9 +1,9 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {NavLink} from "react-router-dom";
-import {useHttp} from "../hooks/http.hook";
 import {IUserData} from "../models/user-info";
 import {connect} from "react-redux";
-import {authAction} from "../actions/auth/authAction";
+import {authAction, onChangeFieldAuth} from "../actions/auth/authAction";
+import {Message} from "../components/Alert";
 
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
@@ -14,7 +14,6 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
-import {Message} from "../components/Alert";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -38,31 +37,16 @@ const useStyles = makeStyles((theme) => ({
 
 function LoginForm(props: any) {
   const classes = useStyles()
-
-  let state: IUserData = {
-    login: '',
-    password: ''
-  }
-  const [stateData, setStateData] = useState<IUserData>(state);
-
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    event.persist()
-    setStateData(prevState => (
-      {
-        ...prevState,
-        ...{[event.target.name]: event.target.value}
-      }
-    ))
+    props.onChangeFielAuth(event.target.name, event.target.value)
   }
-
   const handleLogIn = async () => {
     try {
-      props.logIn(stateData)
+      props.logIn(props.authData)
     } catch (e) {
 
     }
   }
-
   return (
     <div>
       {props.isMsg && <Message text={props.text} mode={props.mode} />}
@@ -80,7 +64,7 @@ function LoginForm(props: any) {
               id="login"
               label="Login"
               name="login"
-              value={stateData.login}
+              value={props.authData.login}
               onChange={onChangeHandler}
               autoComplete="login"
               disabled={props.disabled}
@@ -92,7 +76,7 @@ function LoginForm(props: any) {
               required
               fullWidth
               name="password"
-              value={stateData.password}
+              value={props.authData.password}
               onChange={onChangeHandler}
               label="Password"
               type="password"
@@ -140,7 +124,8 @@ const mapStateToProps = (state: any) => {
     isMsg: state.appData.isMsg,
     text: state.appData.text,
     mode: state.appData.mode,
-    disabled: state.appData.disabled
+    disabled: state.appData.disabled,
+    authData: state.auth
   }
 }
 
@@ -148,6 +133,9 @@ const mapDispatchToProps = (dispatch: any) => {
   return {
     logIn: (data: IUserData) => {
       dispatch(authAction(data))
+    },
+    onChangeFielAuth: (name: String, value: String) => {
+      dispatch(onChangeFieldAuth(name, value))
     }
   }
 }
