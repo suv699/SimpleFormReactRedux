@@ -2,7 +2,7 @@ import React from 'react'
 import {useRoutes} from "./components/Routes";
 import {BrowserRouter} from "react-router-dom";
 import {useSelector} from "react-redux";
-import NavBar from "./components/NavBar";
+import NavBar from "./containers/NavBar";
 
 function App() {
   // @ts-ignore
