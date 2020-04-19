@@ -22,7 +22,7 @@ export default function Balance() {
         $3,024.00
       </Typography>
       <Typography color="textSecondary" className={classes.depositContext}>
-        on 15 March, 2019
+        on {(new Date().toDateString())}
       </Typography>
       <div>
         <Link color="primary" href="#" onClick={preventDefault}>

@@ -35,6 +35,7 @@ function NavBar(props: any) {
             React App
           </Typography>
           <Button color="inherit" onClick={() => {history.push('/')}}>Welcome</Button>
+          <Button color="inherit" onClick={() => {history.push('/order')}}>New Order</Button>
           <Button color="inherit" onClick={() => {history.push('/about')}}>About</Button>
           <Button color="inherit" onClick={()=>{props.logout()}}>Logout</Button>
         </Toolbar>
