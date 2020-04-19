@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from "@material-ui/core/Grid";
+import {Message} from "../components/Alert";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -57,77 +58,82 @@ const RegistrationForm = (props: any) => {
     ))
   }
   return (
-    <Container component="main" maxWidth="xs">
-      <div className={classes.paper}>
-        <Typography component="h1" variant="h5">
-          Registration
-        </Typography>
-        <div className={classes.form}>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="login"
-            label="Login"
-            name="login"
-            value={stateData.login}
-            autoComplete="login"
-            onChange={onChangeHandler}
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            value={stateData.password}
-            onChange={onChangeHandler}
-            autoComplete="current-password"
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            value={stateData.email}
-            onChange={onChangeHandler}
-            autoComplete="email"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            onClick={handlerRegistration}
-          >
+    <div>
+      {props.isMsg && <Message text={props.text} mode={props.mode} />}
+      <Container component="main" maxWidth="xs">
+        <div className={classes.paper}>
+          <Typography component="h1" variant="h5">
             Registration
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              <NavLink to="/">
-                Sign In
-              </NavLink>
+          </Typography>
+          <div className={classes.form}>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="login"
+              label="Login"
+              name="login"
+              value={stateData.login}
+              autoComplete="login"
+              onChange={onChangeHandler}
+              autoFocus
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              value={stateData.password}
+              onChange={onChangeHandler}
+              autoComplete="current-password"
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              value={stateData.email}
+              onChange={onChangeHandler}
+              autoComplete="email"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={handlerRegistration}
+            >
+              Registration
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                <NavLink to="/">
+                  Sign In
+                </NavLink>
+              </Grid>
             </Grid>
-          </Grid>
+          </div>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </div>
   );
 }
 
-/*const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: any) => {
   return {
-    formData: state.registr
+    isMsg: state.msg.isMsg,
+    text: state.msg.text,
+    mode: state.msg.mode
   }
-}*/
+}
 const mapDispatchToProps = (dispatch: any) => {
   return {
     regAction: (data: IUserRegistration) => {
@@ -136,4 +142,4 @@ const mapDispatchToProps = (dispatch: any) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(RegistrationForm)
+export default connect(mapStateToProps, mapDispatchToProps)(RegistrationForm)

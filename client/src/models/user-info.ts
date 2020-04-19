@@ -8,3 +8,8 @@ export interface IUserRegistration {
   password: String,
   email?: String
 }
+
+export interface IMessage {
+  text: String,
+  mode: String
+}

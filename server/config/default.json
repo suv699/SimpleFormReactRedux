@@ -1,5 +1,5 @@
 {
   "port": 5000,
-  "mongoUri": "mongodb+srv://nick:111222333@cluster0-hagqa.mongodb.net/reactReduxUser?retryWrites=true&w=majority",
+  "mongoUri": "mongodb+srv://reactAdmin:12345678qq@reacrreduxcluster-gf7yr.azure.mongodb.net/reactRedux?retryWrites=true&w=majority",
   "baseUrl": "http://localhost:5000"
 }

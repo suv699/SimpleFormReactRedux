@@ -1,7 +1,11 @@
 import {ActionTypes} from '../../types'
 
+const checkLocalStorage = () => {
+  const d = JSON.parse(localStorage.getItem('userData') as string)
+  return d && !!d.userId
+}
 const initialState = {
-  isAuthenticated: false
+  isAuthenticated: checkLocalStorage()
 }
 export const authReducer = (state = initialState, action: any) => {
   switch (action.type) {

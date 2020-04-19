@@ -1,7 +1,7 @@
 export enum ActionTypes {
   SIGNIN = 'APP/SIGNIN',
-  SIGNOUT = 'APP/SIGNOUT',
   REGISTR = 'APP/REGISTR',
   SHOWMSG = 'APP/SHOWMSG',
+  HIDEMSG = 'APP/HIDEMSG',
   LOGOUT = 'APP/LOGOUT'
 }

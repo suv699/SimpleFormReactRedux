@@ -14,6 +14,7 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
+import {Message} from "../components/Alert";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -64,68 +65,79 @@ function LoginForm(props: any) {
   }
 
   return (
-    <Container component="main" maxWidth="xs">
-      <div className={classes.paper}>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <div className={classes.form} >
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="login"
-            label="Login"
-            name="login"
-            value={stateData.login}
-            onChange={onChangeHandler}
-            autoComplete="login"
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            value={stateData.password}
-            onChange={onChangeHandler}
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            onClick={handleLogIn}
-          >
-            Sign In
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="/" variant="body2">
-                Forgot password?
-              </Link>
+    <div>
+      {props.isMsg && <Message text={props.text} mode={props.mode} />}
+      <Container component="main" maxWidth="xs">
+        <div className={classes.paper}>
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <div className={classes.form} >
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="login"
+              label="Login"
+              name="login"
+              value={stateData.login}
+              onChange={onChangeHandler}
+              autoComplete="login"
+              autoFocus
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              value={stateData.password}
+              onChange={onChangeHandler}
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={handleLogIn}
+            >
+              Sign In
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                <Link href="/" variant="body2">
+                  Forgot password?
+                </Link>
+              </Grid>
+              <Grid item>
+                <NavLink to="/registration">
+                  Registration
+                </NavLink>
+              </Grid>
             </Grid>
-            <Grid item>
-              <NavLink to="/registration">
-                Registration
-              </NavLink>
-            </Grid>
-          </Grid>
+          </div>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </div>
   );
+}
+
+const mapStateToProps = (state: any) => {
+  return {
+    isMsg: state.msg.isMsg,
+    text: state.msg.text,
+    mode: state.msg.mode
+  }
 }
 
 const mapDispatchToProps = (dispatch: any) => {
@@ -136,4 +148,4 @@ const mapDispatchToProps = (dispatch: any) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(LoginForm)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
