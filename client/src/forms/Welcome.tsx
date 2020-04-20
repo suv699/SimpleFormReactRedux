@@ -49,7 +49,7 @@ const Welcome = () => {
             </Grid>
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
-                <Balance />
+                <Balance currency="" amount=""/>
               </Paper>
             </Grid>
             <Grid item xs={12}>

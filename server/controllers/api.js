@@ -1,55 +1,96 @@
-/*
-const Model = require('../models/Model');
+const Account = require('../models/Account')
+const Operation = require('../models/Operations')
 
-const getUsers = async (req, res) => {
-    await Model.find({}, (err, users) => {
-        if (err) {
-            return res.status(404).json({success: false, error: err});
-        }
-
-        if (!users.length) {
-            return res.status(404).json({success: false, error: 'Users not found'});
-        }
-
-        return res.status(200).json({success: true, data: users});
-    }).catch(err => {
-        console.log(err)
-    });
-};
-
-const createUser = async (req, res) => {
-    if (!req.body) {
-        return res.status('400').json({success: false, error: 'Create failed!'});
-    }
-    // const user = new Model(req.body);
-    await Model.create(req.body);
-    return res.status(201).json({success: true, data: req.body});
-};
-
-const deleteUser = async (req, res) => {
-    const {id} = req.params;
-    let user = await Model.findByIdAndDelete(id);
-
-    return res.status(200).send({
-        success: true,
-        user
-    });
+const getAccounts = async (req, res) => {
+  try {
+    console.log('req.params.clientId - ', req.params.clientId)
+    await Account.find({clientId: req.params.clientId}, (err, accounts) => {
+      if (err) {
+        return res.status(404).json({success: false, error: err})
+      }
+      if (!accounts.length) {
+        return res.status(404).json({success: false, error: 'Accounts not found'})
+      }
+      return res.status(200).json({success: true, accounts: accounts})
+    })
+  } catch (e) {
+    console.log(e.message)
+    return res.status(500).json({msg: 'Произошла ошибка. Повторите снова.'})
+  }
 }
 
-const updateUser = async (req, res) => {
-    const {id} = req.params;
+const createAccounts = async (req, res) => {
+  try {
+    if (!req.body) {
+      return res.status('400').json({success: false, error: 'Create failed!'})
+    }
+    const {account, currency, accountId, clientId} = req.body
+    const newAccount = new Account({
+      account, currency, accountId, clientId
+    })
+    await newAccount.save()
+    return res.status(201).json({success: true, data: req.body})
+  } catch (e) {
+    return res.status(500).json({msg: 'Произошла ошибка. Повторите снова.'})
+  }
+}
 
-    let user = Model.findByIdAndUpdate(id, req.body);
+/*const deleteUser = async (req, res) => {
+  const {id} = req.params
+  let user = await Model.findByIdAndDelete(id)
 
-    return res.status(200).send({
-        success: true,
-        user
-    });
+  return res.status(200).send({
+    success: true, user
+  })
+}*/
+
+const updateAccount = async (req, res) => {
+  const {accountId} = req.params
+
+  let upAccount = Account.findOneAndUpdate(accountId, req.body)
+
+  return res.status(200).send({
+    success: true, upAccount
+  })
+}
+
+const createOperation = async (req, res) => {
+  try {
+    if (!req.body) {
+      return res.status('400').json({success: false, error: 'Create failed!'})
+    }
+    const {accountId, clientId, operationData} = req.body
+    const newOperation = new Operation({
+      accountId, clientId, operationData
+    })
+    await newOperation.save()
+    return res.status(201).json({success: true, data: req.body})
+  } catch (e) {
+    return res.status(500).json({msg: 'Произошла ошибка. Повторите снова.'})
+  }
+}
+
+const getOperation = async (req, res) => {
+  try {
+    await Operation.find({clientId: req.params.clientId}, (err, operation) => {
+      if (err) {
+        return res.status(404).json({success: false, error: err})
+      }
+      if (!operation.length) {
+        return res.status(404).json({success: false, error: 'Operation not found'})
+      }
+      return res.status(200).json({success: true, operation: operation})
+    })
+  } catch (e) {
+    console.log(e.message)
+    return res.status(500).json({msg: 'Произошла ошибка. Повторите снова.'})
+  }
 }
 
 module.exports = {
-    getUsers,
-    createUser,
-    deleteUser,
-    updateUser
-}*/
+  getAccounts,
+  createAccounts,
+  updateAccount,
+  createOperation,
+  getOperation
+}

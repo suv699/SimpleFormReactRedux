@@ -21,6 +21,8 @@ export const appReducer = (state = initialState, action: any) => {
       return {...state, disabled: false}
     case ActionTypes.FILLUSERDATA:
       return {...state, ...action}
+    case ActionTypes.GETACCOUNT:
+      return {...state, ...action}
     default:
       return state
   }

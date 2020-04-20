@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import {ActionTypes} from '../../types'
 import {DisabledField, EnabledField, HideMsg, ShowMsg} from '../app'
 
@@ -21,6 +22,7 @@ export const registerAction = (data: any) => {
       dispatch(ShowMsg({message: msgData})) && setTimeout(() => {dispatch(HideMsg())}, 3000)
       dispatch(EnabledField())
 
+      createAccount(res.userId)
       res.save && dispatch({
         type: ActionTypes.REGISTR
       })
@@ -37,4 +39,19 @@ export const onChangeFieldReg = (name: String, value: String) => {
     field: name,
     value
   }
+}
+const fakeAccount = {
+  account: '12345678',
+  currency: '$'
+}
+function createAccount(clientId: any) {
+  clientId && fetch('/api/accounts',{
+    method: 'POST',
+    body: JSON.stringify({
+      ...fakeAccount, clientId, accountId: uuidv4()
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
 }

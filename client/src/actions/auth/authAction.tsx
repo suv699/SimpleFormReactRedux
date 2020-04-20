@@ -29,7 +29,7 @@ export const authAction = (data: any) => {
       !res.userId && dispatch(ShowMsg({message: msgData})) && setTimeout(() => {dispatch(HideMsg())}, 3000)
       dispatch(EnabledField())
 
-      res.userId && dispatch(LogiIn(res))
+      res.userId && dispatch(LogiIn(res)) && dispatch(getAccount(res.userId))
 
     } catch (e) {
       dispatch(EnabledField())
@@ -62,5 +62,14 @@ export const onChangeFieldAuth = (name: String, value: String) => {
     type: ActionTypes.ONCHAGEAUTHFIELD,
     field: name,
     value
+  }
+}
+
+const getAccount = async(clientId: any) => {
+
+  const account = await fetch(`api/accounts/${clientId}`)
+  return {
+    type: ActionTypes.GETACCOUNT,
+    accountList: account
   }
 }

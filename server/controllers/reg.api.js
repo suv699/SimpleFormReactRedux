@@ -17,8 +17,8 @@ const register = async (req, res) => {
       password: hashedPass,
       email
     })
-    await newUser.save()
-    res.status(201).json({msg: 'Пользователь успешно создан', save: true})
+    const {id: userId} = await newUser.save()
+    res.status(201).json({msg: 'Пользователь успешно создан', save: true, userId})
   } catch (e) {
     return res.status(500).json({msg: 'Произошла ошибка. Повторите снова.'})
   }
