@@ -1,8 +1,12 @@
-import {ActionTypes} from "../types";
+import {ActionTypes} from '../types'
 
 const initialState = {
+  message: {
+    text: '',
+    mode: ''
+  },
+  userData: {},
   isMsg: false,
-  text: '',
   disabled: false
 }
 export const appReducer = (state = initialState, action: any) => {
@@ -15,6 +19,8 @@ export const appReducer = (state = initialState, action: any) => {
       return {...state, disabled: true}
     case ActionTypes.ENABLEDFIELD:
       return {...state, disabled: false}
+    case ActionTypes.FILLUSERDATA:
+      return {...state, ...action}
     default:
       return state
   }

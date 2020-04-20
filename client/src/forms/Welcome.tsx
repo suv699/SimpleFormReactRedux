@@ -1,13 +1,12 @@
-import React from "react";
-import {connect} from "react-redux";
-import clsx from 'clsx';
-import SimpleTable from "../components/Table";
-import Chart from "../components/Chart";
-import Balance from "../components/Balance";
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Grid from "@material-ui/core/Grid/Grid";
-import {Paper} from "@material-ui/core";
+import React from 'react'
+import clsx from 'clsx'
+import SimpleTable from '../components/Table'
+import Chart from '../components/Chart'
+import Balance from '../components/Balance'
+import { makeStyles } from '@material-ui/core/styles'
+import Container from '@material-ui/core/Container'
+import Grid from '@material-ui/core/Grid/Grid'
+import {Paper} from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,11 +32,11 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 200,
   },
-}));
+}))
 
 const Welcome = () => {
-  const classes = useStyles();
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+  const classes = useStyles()
+  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight)
   return (
     <div className={classes.root}>
       <main className={classes.content}>
@@ -65,4 +64,4 @@ const Welcome = () => {
   )
 }
 
-export default connect(null, null)(Welcome)
+export default Welcome

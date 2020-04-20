@@ -4,12 +4,20 @@ export interface IUserData {
 }
 
 export interface IUserRegistration {
+  name: String,
+  lastName: String,
   login: String,
   password: String,
   email?: String
 }
 
 export interface IMessage {
-  text: String,
-  mode: String
+  message: object
+}
+
+export interface IUserData {
+  userId: number,
+  name: String,
+  lastName: String,
+  login: String
 }

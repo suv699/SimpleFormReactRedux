@@ -1,10 +1,10 @@
 import React from 'react'
 import {Switch, Route, Redirect} from 'react-router-dom'
-import LoginForm from "../forms/LoginForm"
-import RegistrationForm from "../forms/RegistrationForm"
-import Welcome from "../forms/Welcome";
-import Order from "../forms/Order";
-import About from "../forms/About";
+import {LoginForm} from "../forms/LoginForm"
+import {RegistrationForm} from "../forms/RegistrationForm"
+import Welcome from '../forms/Welcome';
+import Order from '../forms/Order';
+import About from '../forms/About';
 
 export const useRoutes = (isAuthenticated: boolean) => {
   if (isAuthenticated) {
