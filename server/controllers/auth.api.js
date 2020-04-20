@@ -13,9 +13,11 @@ const auth = async (req, res) => {
     if (!isMatch) {
       return res.status(400).json({ msg: 'Неверный пароль, попробуйте снова' })
     }
-
+    const {name, lastName, id: userId} = user
     res.status(200).json({
-      userId: user.id
+        name,
+        lastName,
+        userId
     })
   } catch (e) {
     return res.status(500).json({msg: 'Произошла ошибка. Повторите снова.'})

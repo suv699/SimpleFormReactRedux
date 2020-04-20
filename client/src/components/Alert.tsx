@@ -1,7 +1,14 @@
 import React from 'react'
+
 import Alert from '@material-ui/lab/Alert';
 
-export const Message = (props: any) => {
+type TMessage = "success" | "info" | "warning" | "error" | undefined
+
+interface IMessage {
+  text: String,
+  mode: TMessage
+}
+export const Message = (props: IMessage) => {
   return (
     <div>
       <Alert severity={props.mode}>{props.text}</Alert>

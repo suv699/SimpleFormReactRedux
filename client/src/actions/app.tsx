@@ -1,5 +1,6 @@
-import {ActionTypes} from "../types";
-import { IMessage } from "../models/user-info";
+import {Dispatch} from 'redux'
+import {ActionTypes} from '../types'
+import { IMessage } from '../models/user-info'
 
 export const ShowMsg = (data: IMessage) => {
   return {
@@ -29,7 +30,12 @@ export const EnabledField = () => {
 }
 
 export const emptyField = () => {
-  return async (dispatch: any) => {
-    dispatch(ShowMsg({text: 'Заполните логин пароль!', mode: 'error'})) && setTimeout(() => {dispatch(HideMsg())}, 3000)
+  return async (dispatch: Dispatch) => {
+    const msg = {
+      text: 'Заполните все обязательные поля!',
+      mode: 'error'
+    }
+    dispatch(ShowMsg({message: msg}))
+    && setTimeout(() => {dispatch(HideMsg())}, 3000)
   }
 }

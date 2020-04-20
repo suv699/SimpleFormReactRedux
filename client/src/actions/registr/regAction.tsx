@@ -1,5 +1,5 @@
-import {ActionTypes} from "../../types";
-import {DisabledField, EnabledField, HideMsg, ShowMsg} from "../app";
+import {ActionTypes} from '../../types'
+import {DisabledField, EnabledField, HideMsg, ShowMsg} from '../app'
 
 export const registerAction = (data: any) => {
   return async (dispatch: any) => {
@@ -18,9 +18,10 @@ export const registerAction = (data: any) => {
         text: res.msg,
         mode: response.status !== 201 ? 'error' : 'success'
       }
-      !res.userId && dispatch(ShowMsg(msgData)) && setTimeout(() => {dispatch(HideMsg())}, 3000)
+      dispatch(ShowMsg({message: msgData})) && setTimeout(() => {dispatch(HideMsg())}, 3000)
       dispatch(EnabledField())
-      dispatch({
+
+      res.save && dispatch({
         type: ActionTypes.REGISTR
       })
     } catch (e) {
