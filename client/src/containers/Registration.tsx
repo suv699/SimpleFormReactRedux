@@ -1,6 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
+import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+
 import {Message} from '../components/Alert'
 import {Title} from '../components/Title'
 import {emptyField} from '../actions/app'
@@ -8,7 +10,7 @@ import {onChangeFieldReg, registerAction} from '../actions/registr/regAction'
 import {IUserRegistration} from '../models/user-info'
 
 import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
+// import TextValidator from '@material-ui/core/TextValidator'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
@@ -37,17 +39,12 @@ const useStyles = makeStyles((theme) => ({
 const Registration = (props: any) => {
   const classes = useStyles()
 
-  const handlerRegistration = () => {
-
-    if(props.formUserData &&
-      (!props.formUserData.login || !props.formUserData.password
-        || !props.formUserData.name || !props.formUserData.lastName))
-    {
-      props.emptyField()
-      return false
+  const handlerRegistration = (e: any) => {
+    try {
+      props.regAction(props.formUserData)
+    } catch (e) {
+      console.log(e.message)
     }
-
-    props.regAction(props.formUserData)
   }
 
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,11 +57,10 @@ const Registration = (props: any) => {
       <Container component="main" maxWidth="xs">
         <div className={classes.paper}>
           <Title title="Registration"></Title>
-          <div className={classes.form}>
-            <TextField
+          <ValidatorForm  className={classes.form} onSubmit={handlerRegistration} onError={() => props.emptyField()}>
+            <TextValidator
               variant="outlined"
               margin="normal"
-              required
               fullWidth
               id="name"
               label="Name"
@@ -73,12 +69,13 @@ const Registration = (props: any) => {
               autoComplete="name"
               onChange={onChangeHandler}
               disabled={props.appData.disabled}
+              validators={['required']}
+              errorMessages={['field is required']}
               autoFocus
             />
-            <TextField
+            <TextValidator
               variant="outlined"
               margin="normal"
-              required
               fullWidth
               name="lastName"
               label="LastName"
@@ -87,12 +84,12 @@ const Registration = (props: any) => {
               value={props.formUserData.lastName}
               onChange={onChangeHandler}
               disabled={props.appData.disabled}
-              autoComplete="current-password"
+              validators={['required']}
+              errorMessages={['field is required']}
             />
-            <TextField
+            <TextValidator
               variant="outlined"
               margin="normal"
-              required
               fullWidth
               id="login"
               label="Login"
@@ -101,11 +98,12 @@ const Registration = (props: any) => {
               autoComplete="login"
               onChange={onChangeHandler}
               disabled={props.appData.disabled}
+              validators={['required']}
+              errorMessages={['field is required']}
             />
-            <TextField
+            <TextValidator
               variant="outlined"
               margin="normal"
-              required
               fullWidth
               name="password"
               label="Password"
@@ -115,8 +113,10 @@ const Registration = (props: any) => {
               onChange={onChangeHandler}
               disabled={props.appData.disabled}
               autoComplete="current-password"
+              validators={['required']}
+              errorMessages={['field is required']}
             />
-            <TextField
+            <TextValidator
               variant="outlined"
               margin="normal"
               fullWidth
@@ -127,6 +127,7 @@ const Registration = (props: any) => {
               onChange={onChangeHandler}
               disabled={props.appData.disabled}
               autoComplete="email"
+              validators={['isEmail']}
             />
             <Button
               type="submit"
@@ -134,7 +135,6 @@ const Registration = (props: any) => {
               variant="contained"
               color="primary"
               className={classes.submit}
-              onClick={handlerRegistration}
               disabled={props.appData.disabled}
             >
               Registration
@@ -146,7 +146,7 @@ const Registration = (props: any) => {
                 </NavLink>
               </Grid>
             </Grid>
-          </div>
+          </ValidatorForm>
         </div>
       </Container>
     </div>

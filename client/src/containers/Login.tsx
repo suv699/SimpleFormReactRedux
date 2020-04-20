@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
+import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import {authAction, onChangeFieldAuth} from '../actions/auth/authAction'
 import {Message} from '../components/Alert'
 import {emptyField} from '../actions/app'
@@ -8,7 +9,6 @@ import {Title} from '../components/Title'
 import {IUserData} from '../models/user-info'
 
 import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Checkbox from '@material-ui/core/Checkbox'
 import Link from '@material-ui/core/Link'
@@ -43,10 +43,6 @@ function Login(props: any) {
   }
   const handleLogIn = async () => {
     try {
-      if(props.authData && (!props.authData.login || !props.authData.password)) {
-        props.emptyField()
-        return false
-      }
       const {login, password} = props.authData
       props.logIn({login, password})
     } catch (e) {
@@ -59,11 +55,10 @@ function Login(props: any) {
       <Container component="main" maxWidth="xs">
         <div className={classes.paper}>
           <Title title="Sign in"></Title>
-          <div className={classes.form} >
-            <TextField
+          <ValidatorForm className={classes.form} onSubmit={handleLogIn} onError={() => props.emptyField()}>
+            <TextValidator
               variant="outlined"
               margin="normal"
-              required
               fullWidth
               id="login"
               label="Login"
@@ -72,12 +67,13 @@ function Login(props: any) {
               onChange={onChangeHandler}
               autoComplete="login"
               disabled={props.disabled}
+              validators={['required']}
+              errorMessages={['field is required']}
               autoFocus
             />
-            <TextField
+            <TextValidator
               variant="outlined"
               margin="normal"
-              required
               fullWidth
               name="password"
               value={props.authData.password}
@@ -85,8 +81,9 @@ function Login(props: any) {
               label="Password"
               type="password"
               disabled={props.disabled}
+              validators={['required']}
+              errorMessages={['field is required']}
               id="password"
-              autoComplete="current-password"
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -99,7 +96,6 @@ function Login(props: any) {
               variant="contained"
               color="primary"
               className={classes.submit}
-              onClick={handleLogIn}
               disabled={props.disabled}
             >
               Sign In
@@ -116,7 +112,7 @@ function Login(props: any) {
                 </NavLink>
               </Grid>
             </Grid>
-          </div>
+          </ValidatorForm>
         </div>
       </Container>
     </div>
