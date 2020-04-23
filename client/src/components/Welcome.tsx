@@ -2,11 +2,11 @@ import React from 'react'
 import clsx from 'clsx'
 import SimpleTable from './Table'
 import Chart from './Chart'
-import { makeStyles } from '@material-ui/core/styles'
+import {makeStyles} from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid/Grid'
 import {Paper} from '@material-ui/core'
-import BalanceUI from '../containers/BalanceUI';
+import BalanceUI from '../containers/BalanceUI'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
-    height: '100vh'
+    height: '100vh',
   },
   container: {
     paddingTop: theme.spacing(4),
@@ -49,7 +49,7 @@ const Welcome = () => {
             </Grid>
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
-                <BalanceUI/>
+                <BalanceUI />
               </Paper>
             </Grid>
             <Grid item xs={12}>

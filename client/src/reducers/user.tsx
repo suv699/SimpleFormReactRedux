@@ -1,7 +1,7 @@
 import {ActionTypes} from '../types'
 
 const initialStateUser = {
-  userData: {}
+  userData: {},
 }
 export const userReducer = (state = initialStateUser, action: any) => {
   switch (action.type) {

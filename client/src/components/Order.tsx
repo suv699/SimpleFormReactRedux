@@ -3,7 +3,7 @@ import AddressForm from './AddressForm'
 import PaymentForm from './PaymentForm'
 import Review from './Review'
 
-import { makeStyles } from '@material-ui/core/styles'
+import {makeStyles} from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -107,8 +107,8 @@ export default function Checkout() {
                   Thank you for your order.
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your order number is #2001539. We have emailed your order confirmation, and will
-                  send you an update when your order has shipped.
+                  Your order number is #2001539. We have emailed your order confirmation, and will send you an update
+                  when your order has shipped.
                 </Typography>
               </React.Fragment>
             ) : (
@@ -120,12 +120,7 @@ export default function Checkout() {
                       Back
                     </Button>
                   )}
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleNext}
-                    className={classes.button}
-                  >
+                  <Button variant="contained" color="primary" onClick={handleNext} className={classes.button}>
                     {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
                   </Button>
                 </div>

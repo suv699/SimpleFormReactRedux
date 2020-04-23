@@ -3,10 +3,10 @@ import {ActionTypes} from '../types'
 const initialState = {
   message: {
     text: '',
-    mode: ''
+    mode: '',
   },
   isMsg: false,
-  disabled: false
+  disabled: false,
 }
 export const appReducer = (state = initialState, action: any) => {
   switch (action.type) {

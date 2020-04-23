@@ -3,7 +3,7 @@ import React from 'react'
 import {Typography} from '@material-ui/core'
 
 interface IProps {
-  title: String
+  title: string;
 }
 export const Title = (props: IProps) => {
   return (

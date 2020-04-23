@@ -1,11 +1,11 @@
 import React from 'react'
 
-import Alert from '@material-ui/lab/Alert';
+import Alert from '@material-ui/lab/Alert'
 
-type TMessage = "success" | "info" | "warning" | "error" | undefined
+type TMessage = 'success' | 'info' | 'warning' | 'error' | undefined
 
 interface IMessage {
-  text: String,
+  text: string;
   mode: TMessage
 }
 export const Message = (props: IMessage) => {

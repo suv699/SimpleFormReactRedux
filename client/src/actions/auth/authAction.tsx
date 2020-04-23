@@ -1,37 +1,40 @@
 import {ActionTypes} from '../../types'
 import {DisabledField, EnabledField, HideMsg, ShowMsg} from '../app'
 import {IUserData} from '../../models/user-info'
-import {Dispatch} from 'redux';
+import {Dispatch} from 'redux'
 
 export const authAction = (data: any) => {
   return async (dispatch: any) => {
     try {
       dispatch(DisabledField())
       const headers = {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       }
       const body = JSON.stringify(data)
-      const response = await fetch('/api/auth',{
+      const response = await fetch('/api/auth', {
         method: 'POST',
         body,
-        headers
+        headers,
       })
       const res = await response.json()
       dispatch({
         type: ActionTypes.FILLUSERDATA,
         userData: {
-          ...res
-        }
+          ...res,
+        },
       })
       const msgData = {
         text: res.msg,
-        mode: response.status !== 200 ? 'error' : 'success'
+        mode: response.status !== 200 ? 'error' : 'success',
       }
-      !res.userId && dispatch(ShowMsg({message: msgData})) && setTimeout(() => {dispatch(HideMsg())}, 3000)
+      !res.userId &&
+        dispatch(ShowMsg({message: msgData})) &&
+        setTimeout(() => {
+          dispatch(HideMsg())
+        }, 3000)
       dispatch(EnabledField())
 
       res.userId && dispatch(LogIn(res)) && dispatch(getAccount(res.userId))
-
     } catch (e) {
       dispatch(EnabledField())
       console.log('request error - ', e.message)
@@ -41,28 +44,31 @@ export const authAction = (data: any) => {
 
 export const LogIn = (userData: IUserData) => {
   const {userId} = userData
-  if(userId) {
-    localStorage.setItem('userData', JSON.stringify({
-      userId: userId
-    }))
+  if (userId) {
+    localStorage.setItem(
+      'userData',
+      JSON.stringify({
+        userId: userId,
+      }),
+    )
   }
   return {
     type: ActionTypes.SIGNIN,
-    isAuthenticated: !!userId
+    isAuthenticated: !!userId,
   }
 }
 export const Logout = () => {
   localStorage.clear()
   return {
-    type: ActionTypes.LOGOUT
+    type: ActionTypes.LOGOUT,
   }
 }
 
-export const onChangeFieldAuth = (name: String, value: String) => {
+export const onChangeFieldAuth = (name: string, value: string) => {
   return {
     type: ActionTypes.ONCHAGEAUTHFIELD,
     field: name,
-    value
+    value,
   }
 }
 
@@ -73,7 +79,7 @@ export const getAccount = (clientId: any) => {
 
     dispatch({
       type: ActionTypes.GETACCOUNT,
-      ...res.account
+      ...res.account,
     })
   }
 }

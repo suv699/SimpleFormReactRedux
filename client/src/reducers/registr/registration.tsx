@@ -6,7 +6,7 @@ const initialState: IUserRegistration = {
   lastName: '',
   login: '',
   password: '',
-  email: ''
+  email: '',
 }
 
 export const registrReducer = (state = initialState, action: any) => {
@@ -24,7 +24,7 @@ export const registrReducer = (state = initialState, action: any) => {
     case ActionTypes.ONCHAGEREGFIELD:
       return {
         ...state,
-        [action.field]: action.value
+        [action.field]: action.value,
       }
     default:
       return state

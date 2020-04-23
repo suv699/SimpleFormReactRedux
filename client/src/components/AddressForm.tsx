@@ -14,24 +14,10 @@ export default function AddressForm() {
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="firstName"
-            name="firstName"
-            label="First name"
-            fullWidth
-            autoComplete="fname"
-          />
+          <TextField required id="firstName" name="firstName" label="First name" fullWidth autoComplete="fname" />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="lastName"
-            name="lastName"
-            label="Last name"
-            fullWidth
-            autoComplete="lname"
-          />
+          <TextField required id="lastName" name="lastName" label="Last name" fullWidth autoComplete="lname" />
         </Grid>
         <Grid item xs={12}>
           <TextField
@@ -53,14 +39,7 @@ export default function AddressForm() {
           />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="city"
-            name="city"
-            label="City"
-            fullWidth
-            autoComplete="billing address-level2"
-          />
+          <TextField required id="city" name="city" label="City" fullWidth autoComplete="billing address-level2" />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField id="state" name="state" label="State/Province/Region" fullWidth />
@@ -76,14 +55,7 @@ export default function AddressForm() {
           />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="country"
-            name="country"
-            label="Country"
-            fullWidth
-            autoComplete="billing country"
-          />
+          <TextField required id="country" name="country" label="Country" fullWidth autoComplete="billing country" />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel

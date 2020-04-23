@@ -129,7 +129,7 @@ const mapDispatchToProps = (dispatch: any) => {
     logIn: (data: IUserData) => {
       dispatch(authAction(data))
     },
-    onChangeFieldAuth: (name: String, value: String) => {
+    onChangeFieldAuth: (name: string, value: string) => {
       dispatch(onChangeFieldAuth(name, value))
     },
     emptyField: () => {

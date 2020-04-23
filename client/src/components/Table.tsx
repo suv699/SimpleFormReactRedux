@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { makeStyles } from '@material-ui/core/styles'
+import {makeStyles} from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
@@ -17,7 +17,7 @@ const useStyles = makeStyles({
 
 // Generate Order Data
 function createData(id: number, date: string, name: string, shipTo: string, paymentMethod: string, amount: number) {
-  return { id, date, name, shipTo, paymentMethod, amount }
+  return {id, date, name, shipTo, paymentMethod, amount}
 }
 
 const rows = [
@@ -53,7 +53,6 @@ export default function SimpleTable() {
               <TableCell align="right">{row.amount}</TableCell>
             </TableRow>
           ))}
-
         </TableBody>
       </Table>
     </TableContainer>
