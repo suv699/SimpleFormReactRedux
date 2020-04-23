@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
-import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator'
 
 import {Message} from '../components/Alert'
 import {Title} from '../components/Title'
@@ -10,11 +10,9 @@ import {onChangeFieldReg, registerAction} from '../actions/registr/regAction'
 import {IUserRegistration} from '../models/user-info'
 
 import Button from '@material-ui/core/Button'
-// import TextValidator from '@material-ui/core/TextValidator'
-import { makeStyles } from '@material-ui/core/styles'
+import {makeStyles} from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
-
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -36,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Registration = (props: any) => {
+const RegistrationForm = (props: any) => {
   const classes = useStyles()
 
   const handlerRegistration = (e: any) => {
@@ -57,7 +55,7 @@ const Registration = (props: any) => {
       <Container component="main" maxWidth="xs">
         <div className={classes.paper}>
           <Title title="Registration"></Title>
-          <ValidatorForm  className={classes.form} onSubmit={handlerRegistration} onError={() => props.emptyField()}>
+          <ValidatorForm className={classes.form} onSubmit={handlerRegistration} onError={() => props.emptyField()}>
             <TextValidator
               variant="outlined"
               margin="normal"
@@ -135,15 +133,12 @@ const Registration = (props: any) => {
               variant="contained"
               color="primary"
               className={classes.submit}
-              disabled={props.appData.disabled}
-            >
+              disabled={props.appData.disabled}>
               Registration
             </Button>
             <Grid container>
               <Grid item xs>
-                <NavLink to="/">
-                  Sign In
-                </NavLink>
+                <NavLink to="/">Sign In</NavLink>
               </Grid>
             </Grid>
           </ValidatorForm>
@@ -157,7 +152,7 @@ const mapStateToProps = (state: any) => {
   return {
     formUserData: state.regData,
     appData: state.appData,
-    message: state.appData.message
+    message: state.appData.message,
   }
 }
 const mapDispatchToProps = (dispatch: any) => {
@@ -165,13 +160,13 @@ const mapDispatchToProps = (dispatch: any) => {
     regAction: (data: IUserRegistration) => {
       dispatch(registerAction(data))
     },
-    onChangeFieldReg: (name: String, value: String) => {
+    onChangeFieldReg: (name: string, value: string) => {
       dispatch(onChangeFieldReg(name, value))
     },
     emptyField: () => {
       dispatch(emptyField())
-    }
+    },
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Registration)
+export default connect(mapStateToProps, mapDispatchToProps)(RegistrationForm)

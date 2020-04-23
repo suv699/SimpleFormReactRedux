@@ -6,6 +6,7 @@ const accountSchema = new Schema({
   currency: {type: String, required: true},
   accountId: {type: String, required: true, unique: true},
   clientId: {type: String, required: true},
+  amount: {type: String}
 })
 
 module.exports = mongoose.model('Account', accountSchema)

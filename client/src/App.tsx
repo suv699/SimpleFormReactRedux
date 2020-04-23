@@ -6,12 +6,12 @@ import NavBar from './containers/NavBar'
 
 function App() {
   // @ts-ignore
-  const isAuthenticated: boolean = useSelector(state => state.auth.isAuthenticated)
+  const isAuthenticated: boolean = useSelector((state) => state.auth.isAuthenticated)
   const routes = useRoutes(isAuthenticated)
   return (
     <div className="App">
       <BrowserRouter>
-        { isAuthenticated && <NavBar /> }
+        {isAuthenticated && <NavBar />}
         {routes}
       </BrowserRouter>
     </div>

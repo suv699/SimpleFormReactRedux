@@ -1,14 +1,14 @@
 import React from 'react'
+import {Dispatch} from 'redux'
 import {connect} from 'react-redux'
 import {Logout} from '../actions/auth/authAction'
 import {useHistory} from 'react-router'
 
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
+import {createStyles, makeStyles, Theme} from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
-import {Dispatch} from "redux";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -35,10 +35,34 @@ function NavBar(props: any) {
           <Typography variant="h6" className={classes.title}>
             React App
           </Typography>
-          <Button color="inherit" onClick={() => {history.push('/')}}>Welcome</Button>
-          <Button color="inherit" onClick={() => {history.push('/order')}}>New Order</Button>
-          <Button color="inherit" onClick={() => {history.push('/about')}}>About</Button>
-          <Button color="inherit" onClick={()=>{props.logout()}}>Logout</Button>
+          <Button
+            color="inherit"
+            onClick={() => {
+              history.push('/')
+            }}>
+            Welcome
+          </Button>
+          <Button
+            color="inherit"
+            onClick={() => {
+              history.push('/order')
+            }}>
+            New Order
+          </Button>
+          <Button
+            color="inherit"
+            onClick={() => {
+              history.push('/about')
+            }}>
+            About
+          </Button>
+          <Button
+            color="inherit"
+            onClick={() => {
+              props.logout()
+            }}>
+            Logout
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
@@ -48,7 +72,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     logout: () => {
       dispatch(Logout())
-    }
+    },
   }
 }
 export default connect(null, mapDispatchToProps)(NavBar)

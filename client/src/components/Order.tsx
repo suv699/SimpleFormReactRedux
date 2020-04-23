@@ -1,7 +1,7 @@
 import React from 'react'
-import AddressForm from '../components/AddressForm'
-import PaymentForm from '../components/PaymentForm'
-import Review from '../components/Review'
+import AddressForm from './AddressForm'
+import PaymentForm from './PaymentForm'
+import Review from './Review'
 
 import { makeStyles } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'

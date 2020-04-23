@@ -20,7 +20,7 @@ export default function Balance(props: any) {
     <React.Fragment>
       <Typography>Recent Deposits</Typography>
       <Typography component="p" variant="h4">
-        $3,024.00
+        {/*$3,024.00*/}
         {props.currency} {props.amount}
       </Typography>
       <Typography color="textSecondary" className={classes.depositContext}>

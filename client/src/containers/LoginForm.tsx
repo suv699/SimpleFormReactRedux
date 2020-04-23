@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
-import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator'
 import {authAction, onChangeFieldAuth} from '../actions/auth/authAction'
 import {Message} from '../components/Alert'
 import {emptyField} from '../actions/app'
@@ -13,7 +13,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Checkbox from '@material-ui/core/Checkbox'
 import Link from '@material-ui/core/Link'
 import Grid from '@material-ui/core/Grid'
-import { makeStyles } from '@material-ui/core/styles'
+import {makeStyles} from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 
 const useStyles = makeStyles((theme) => ({
@@ -36,12 +36,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-function Login(props: any) {
+function LoginForm(props: any) {
   const classes = useStyles()
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     props.onChangeFieldAuth(event.target.name, event.target.value)
   }
-  const handleLogIn = async () => {
+  const handleLogIn = () => {
     try {
       const {login, password} = props.authData
       props.logIn({login, password})
@@ -96,8 +96,7 @@ function Login(props: any) {
               variant="contained"
               color="primary"
               className={classes.submit}
-              disabled={props.disabled}
-            >
+              disabled={props.disabled}>
               Sign In
             </Button>
             <Grid container>
@@ -107,9 +106,7 @@ function Login(props: any) {
                 </Link>
               </Grid>
               <Grid item>
-                <NavLink to="/registration">
-                  Registration
-                </NavLink>
+                <NavLink to="/registration">Registration</NavLink>
               </Grid>
             </Grid>
           </ValidatorForm>
@@ -123,7 +120,7 @@ const mapStateToProps = (state: any) => {
   return {
     authData: state.auth,
     appData: state.appData,
-    message: state.appData.message    
+    message: state.appData.message,
   }
 }
 
@@ -137,8 +134,8 @@ const mapDispatchToProps = (dispatch: any) => {
     },
     emptyField: () => {
       dispatch(emptyField())
-    }
+    },
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)

@@ -42,7 +42,8 @@ export const onChangeFieldReg = (name: String, value: String) => {
 }
 const fakeAccount = {
   account: '12345678',
-  currency: '$'
+  currency: '$',
+  amount: '352658'
 }
 function createAccount(clientId: any) {
   clientId && fetch('/api/accounts',{

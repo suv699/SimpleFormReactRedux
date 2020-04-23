@@ -3,7 +3,6 @@ const Operation = require('../models/Operations')
 
 const getAccounts = async (req, res) => {
   try {
-    console.log('req.params.clientId - ', req.params.clientId)
     await Account.find({clientId: req.params.clientId}, (err, accounts) => {
       if (err) {
         return res.status(404).json({success: false, error: err})
@@ -11,7 +10,7 @@ const getAccounts = async (req, res) => {
       if (!accounts.length) {
         return res.status(404).json({success: false, error: 'Accounts not found'})
       }
-      return res.status(200).json({success: true, accounts: accounts})
+      return res.status(200).json({success: true, account: accounts[0]})
     })
   } catch (e) {
     console.log(e.message)
@@ -24,9 +23,9 @@ const createAccounts = async (req, res) => {
     if (!req.body) {
       return res.status('400').json({success: false, error: 'Create failed!'})
     }
-    const {account, currency, accountId, clientId} = req.body
+    const {account, currency, accountId, clientId, amount} = req.body
     const newAccount = new Account({
-      account, currency, accountId, clientId
+      account, currency, accountId, clientId, amount
     })
     await newAccount.save()
     return res.status(201).json({success: true, data: req.body})

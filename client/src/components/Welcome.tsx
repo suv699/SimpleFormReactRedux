@@ -1,12 +1,12 @@
 import React from 'react'
 import clsx from 'clsx'
-import SimpleTable from '../components/Table'
-import Chart from '../components/Chart'
-import Balance from '../components/Balance'
+import SimpleTable from './Table'
+import Chart from './Chart'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid/Grid'
 import {Paper} from '@material-ui/core'
+import BalanceUI from '../containers/BalanceUI';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,7 +49,7 @@ const Welcome = () => {
             </Grid>
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
-                <Balance currency="" amount=""/>
+                <BalanceUI/>
               </Paper>
             </Grid>
             <Grid item xs={12}>

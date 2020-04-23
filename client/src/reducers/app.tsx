@@ -5,7 +5,6 @@ const initialState = {
     text: '',
     mode: ''
   },
-  userData: {},
   isMsg: false,
   disabled: false
 }
@@ -19,10 +18,6 @@ export const appReducer = (state = initialState, action: any) => {
       return {...state, disabled: true}
     case ActionTypes.ENABLEDFIELD:
       return {...state, disabled: false}
-    case ActionTypes.FILLUSERDATA:
-      return {...state, ...action}
-    case ActionTypes.GETACCOUNT:
-      return {...state, ...action}
     default:
       return state
   }

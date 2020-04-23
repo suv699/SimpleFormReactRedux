@@ -9,7 +9,7 @@ async function start() {
     await mongoose.connect(URi, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      createIndexes: true
+			useCreateIndex: true
     }, (err) => {
       console.log('Connect db OK!')
     })
