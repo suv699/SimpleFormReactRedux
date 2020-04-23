@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {connect} from 'react-redux'
 import Balance from '../components/Balance'
 import {getAccount} from '../actions/auth/authAction'
 
 function BalanceUI(props: any) {
-  console.log('Balance')
+	useEffect(() => {
+		if(props.account && !props.account.amount) {
+			props.gatAccount()
+		}
+	})
   return <Balance currency={props.account.currency} amount={props.account.amount} toggleRefresh={props.gatAccount} />
 }
 
