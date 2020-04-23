@@ -1,5 +1,5 @@
-import {IUserRegistration} from '../../models/user-info'
-import {ActionTypes} from '../../types'
+import {IUserRegistration} from '../models/user-info'
+import {ActionTypes} from '../types'
 
 const initialState: IUserRegistration = {
   name: '',

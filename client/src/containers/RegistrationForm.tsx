@@ -6,7 +6,7 @@ import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator'
 import {Message} from '../components/Alert'
 import {Title} from '../components/Title'
 import {emptyField} from '../actions/app'
-import {onChangeFieldReg, registerAction} from '../actions/registr/regAction'
+import {onChangeFieldReg, registerAction} from '../actions/regAction'
 import {IUserRegistration} from '../models/user-info'
 
 import Button from '@material-ui/core/Button'

@@ -1,7 +1,7 @@
 import React from 'react'
 import {Dispatch} from 'redux'
 import {connect} from 'react-redux'
-import {Logout} from '../actions/auth/authAction'
+import {Logout} from '../actions/authAction'
 import {useHistory} from 'react-router'
 
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles'

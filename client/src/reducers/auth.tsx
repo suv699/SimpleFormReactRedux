@@ -1,4 +1,4 @@
-import {ActionTypes} from '../../types'
+import {ActionTypes} from '../types'
 
 const checkLocalStorage = () => {
   const d = JSON.parse(localStorage.getItem('userData') as string)

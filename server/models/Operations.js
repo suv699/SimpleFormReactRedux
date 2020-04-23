@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 
 const operationSchema = new Schema({
-  accountId: {type: String, required: true, unique: true},
+  orderId: {type: String, required: true, unique: true},
   operationData: {type: Object, required: true},
   clientId: {type: String, required: false}
 })

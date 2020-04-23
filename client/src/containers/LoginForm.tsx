@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
 import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator'
-import {authAction, onChangeFieldAuth} from '../actions/auth/authAction'
+import {authAction, onChangeFieldAuth} from '../actions/authAction'
 import {Message} from '../components/Alert'
 import {emptyField} from '../actions/app'
 import {Title} from '../components/Title'
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-function LoginForm(props: any) {
+const LoginForm: React.FC = (props: any) => {
   const classes = useStyles()
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     props.onChangeFieldAuth(event.target.name, event.target.value)

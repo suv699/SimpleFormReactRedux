@@ -1,7 +1,7 @@
 import React from 'react'
 import clsx from 'clsx'
-import SimpleTable from './Table'
-import Chart from './Chart'
+import SimpleTable from './SimpleTable'
+import {Chart} from './Chart'
 import {makeStyles} from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid/Grid'
@@ -44,7 +44,7 @@ const Welcome = () => {
           <Grid container spacing={3}>
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
-                <Chart />
+                <Chart data={chartData}/>
               </Paper>
             </Grid>
             <Grid item xs={12} md={4} lg={3}>
@@ -65,3 +65,21 @@ const Welcome = () => {
 }
 
 export default Welcome
+
+
+// Generate Sales Data
+function createData(time: string, amount: any) {
+  return {time, amount}
+}
+
+const chartData = [
+  createData('00:00', 0),
+  createData('03:00', 300),
+  createData('06:00', 600),
+  createData('09:00', 800),
+  createData('12:00', 500),
+  createData('15:00', 2000),
+  createData('18:00', 100),
+  createData('21:00', 2400),
+  createData('24:00', undefined),
+]

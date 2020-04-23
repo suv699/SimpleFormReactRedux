@@ -1,6 +1,6 @@
-import {ActionTypes} from '../../types'
-import {DisabledField, EnabledField, HideMsg, ShowMsg} from '../app'
-import {IUserData} from '../../models/user-info'
+import {ActionTypes} from '../types'
+import {DisabledField, EnabledField, HideMsg, ShowMsg} from './app'
+import {IUserData} from '../models/user-info'
 import {Dispatch} from 'redux'
 
 export const authAction = (data: any) => {

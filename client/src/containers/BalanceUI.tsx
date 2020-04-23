@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import {connect} from 'react-redux'
 import Balance from '../components/Balance'
-import {getAccount} from '../actions/auth/authAction'
+import {getAccount} from '../actions/authAction'
 
 function BalanceUI(props: any) {
 	useEffect(() => {

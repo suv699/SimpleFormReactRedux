@@ -1,6 +1,6 @@
 import {v4 as uuidv4} from 'uuid'
-import {ActionTypes} from '../../types'
-import {DisabledField, EnabledField, HideMsg, ShowMsg} from '../app'
+import {ActionTypes} from '../types'
+import {DisabledField, EnabledField, HideMsg, ShowMsg} from './app'
 
 export const registerAction = (data: any) => {
   return async (dispatch: any) => {

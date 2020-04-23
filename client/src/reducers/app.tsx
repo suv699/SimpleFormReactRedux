@@ -7,8 +7,10 @@ const initialState = {
   },
   isMsg: false,
   disabled: false,
+  gridData: []
 }
 export const appReducer = (state = initialState, action: any) => {
+  debugger
   switch (action.type) {
     case ActionTypes.SHOWMSG:
       return {...state, isMsg: true, ...action}
@@ -18,6 +20,11 @@ export const appReducer = (state = initialState, action: any) => {
       return {...state, disabled: true}
     case ActionTypes.ENABLEDFIELD:
       return {...state, disabled: false}
+      case ActionTypes.UPDATEGRIDTDATA:
+        return {
+          ...state,
+          gridData: [action.data, ...state.gridData]
+        }
     default:
       return state
   }

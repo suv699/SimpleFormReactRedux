@@ -58,9 +58,9 @@ const createOperation = async (req, res) => {
     if (!req.body) {
       return res.status('400').json({success: false, error: 'Create failed!'})
     }
-    const {accountId, clientId, operationData} = req.body
+    const {clientId, operationData, orderId} = req.body
     const newOperation = new Operation({
-      accountId, clientId, operationData
+      clientId, operationData, orderId
     })
     await newOperation.save()
     return res.status(201).json({success: true, data: req.body})
