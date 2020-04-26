@@ -1,9 +1,10 @@
 const express = require('express')
+const config = require('config')
 const start = require('./db/index')
 const router = require('./routes/router')
 const bodyParser = require('body-parser')
 
-const PORT = process.env.PORT || '5000'
+const PORT = config.get('port') || '5000'
 const app = express()
 
 app.use(bodyParser.urlencoded({extended: true}))

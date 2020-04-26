@@ -3,9 +3,9 @@ const Schema = mongoose.Schema
 
 const accountSchema = new Schema({
   account: {type: String, required: false},
-  currency: {type: String, required: true},
-  accountId: {type: String, required: true, unique: true},
-  clientId: {type: String, required: true},
+  currency: {type: String, required: false},
+  accountId: {type: String, required: false},
+  clientId: {type: String, required: false},
   amount: {type: String}
 })
 

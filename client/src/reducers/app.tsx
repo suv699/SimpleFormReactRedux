@@ -10,7 +10,6 @@ const initialState = {
   gridData: []
 }
 export const appReducer = (state = initialState, action: any) => {
-  debugger
   switch (action.type) {
     case ActionTypes.SHOWMSG:
       return {...state, isMsg: true, ...action}

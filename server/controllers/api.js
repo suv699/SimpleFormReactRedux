@@ -34,23 +34,20 @@ const createAccounts = async (req, res) => {
   }
 }
 
-/*const deleteUser = async (req, res) => {
-  const {id} = req.params
-  let user = await Model.findByIdAndDelete(id)
-
-  return res.status(200).send({
-    success: true, user
-  })
-}*/
-
 const updateAccount = async (req, res) => {
-  const {accountId} = req.params
+  try {
+    console.log('req.body- ' , req.body)
+    const {accountId} = req.params
+    const {account, amount, clientId} = req.body
+    
+    let upAccount = await Account.findOneAndUpdate(accountId, {account, amount, clientId})
 
-  let upAccount = Account.findOneAndUpdate(accountId, req.body)
-
-  return res.status(200).send({
-    success: true, upAccount
-  })
+    return res.status(200).send({
+      success: true, upAccount
+    })
+  } catch(e) {
+    return res.status(500).json({msg: e.message})
+  }
 }
 
 const createOperation = async (req, res) => {

@@ -29,21 +29,38 @@ const getClientId = () => {
 }
 export const createOrder = (data: any) => {
   return async (dispatch: any) => {
+    const curDate = new Date().toDateString()
+    const clientId = getClientId()
 		const response = await fetch('/api/order', {
       method: 'POST',
       body: JSON.stringify({
-				operationData: {...data},
+				operationData: {...data, date: curDate, amount: '$13.44'},
 				orderId: uuidv4(),
-				clientId: getClientId() + ''
+				clientId
       }),
       headers: {
         'Content-Type': 'application/json',
       },
-		})
+    })
+    
+    const account = await fetch(`api/accounts/${clientId}`)
+    const acc = await account.json()
+    const newAmount = (+acc.account.amount) - (13.44)
+    
+    await fetch(`/api/accounts/${acc.account.accountId}`, {
+      method: 'POST',
+      body: JSON.stringify({
+        ...acc.account, amount: newAmount+'',
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+
 		
 		const res = await response.json()
- debugger
-		dispatch(updateGridData(res.data))
+    dispatch(updateGridData(res.data))
+    dispatch(clearPaymentData())
 	}
 }
 
@@ -52,4 +69,11 @@ const updateGridData = (data: any) => {
 		type: ActionTypes.UPDATEGRIDTDATA,
 		data
 	}
+}
+
+const clearPaymentData = () => {
+  return {
+    type: ActionTypes.CLEARPAYMENTDATA,
+    data: {}
+  }
 }

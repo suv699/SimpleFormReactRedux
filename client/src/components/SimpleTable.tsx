@@ -16,8 +16,8 @@ const useStyles = makeStyles({
 })
 
 // Generate Order Data
-function createData(id: number, date: string, name: string, shipTo: string, paymentMethod: string, amount: number) {
-  return {id, date, name, shipTo, paymentMethod, amount}
+function createData(id: number, date: string, name: string, city: string, cardNumber: string, amount: number) {
+  return {id, date, name, city, cardNumber, amount}
 }
 
 const rows = [
@@ -48,8 +48,8 @@ export default function SimpleTable() {
             <TableRow key={row.id}>
               <TableCell>{row.date}</TableCell>
               <TableCell>{row.name}</TableCell>
-              <TableCell>{row.shipTo}</TableCell>
-              <TableCell>{row.paymentMethod}</TableCell>
+              <TableCell>{row.city}</TableCell>
+              <TableCell>{row.cardNumber}</TableCell>
               <TableCell align="right">{row.amount}</TableCell>
             </TableRow>
           ))}
